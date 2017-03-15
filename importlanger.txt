@@ -1,0 +1,300 @@
+/20170122 LANGER IMPORT
+Integer li_row = 0
+Integer ll_days, li_count, lx, li, li_loc_count = 1
+String ls_special = "", ls_type, ls_location, ls_state, ls_desc
+//
+//
+//ls_type = get_default(tab_advanced.tabpage_options.ddlb_casetype.text)
+//IF lv_list.trigger event ue_getitem("Report_Type",ll_rec,TRUE)  = "Inspection" THEN
+//	IF ls_type <> "I" THEN
+//		Messagebox("Import","Warning--This is not an audit")
+//		RETURN
+//	END IF
+//ELSE
+//	IF ls_type <> "A" THEN
+//		Messagebox("Import","Warning--This is not an inspection")
+//		RETURN
+//	END IF
+//END IF
+//
+//ls_location = lv_list.trigger event ue_get_itemrow("Risk_Location_Instruction",ll_rec,1,FALSE)
+//IF ls_location = "N/F" THEN ls_location = lv_list.trigger event ue_get_itemrow("Risk_Address1",ll_rec,1,FALSE)
+//DO WHILE ls_location <> "N/F"
+dw_results.trigger event ue_addnew()
+dw_results.object.customer[dw_results.rowcount()] = &
+	long(tab_advanced.tabpage_options.sle_customer.text)
+dw_results.object.type_cs[dw_results.rowcount()] = &
+	tab_advanced.tabpage_options.ddlb_casetype.text
+dw_results.object.deftype[dw_results.rowcount()] = &
+	get_default(tab_advanced.tabpage_options.ddlb_casetype.text)
+dw_results.object.control[dw_results.rowcount()] =  dw_results.rowcount()
+
+//Get the PolicyTraceID - it is like their system case number
+// This is from policy , classcodes section or at the top of the xml
+dw_results.object.refno[dw_results.rowcount()] = &
+      lv_list.trigger event ue_get_litem("PolicyTraceID",ll_rec,20,TRUE) 
+		
+// Policy - 2-20-17
+li_row = 1
+DO WHILE lv_list.trigger event ue_getcolumn("ns0:Policy" + string(li_row) + ".ns0:PolicyNumber") > 0
+	CHOOSE CASE li_row
+	CASE 1
+		dw_results.object.policy1[dw_results.rowcount()] = &
+   		   lv_list.trigger event ue_get_litem("ns0:Policy1.ns0:PolicyNumber",ll_rec,20,TRUE) 
+		dw_results.object.Pstart1[dw_results.rowcount()] = &
+   		  lv_list.trigger event ue_getdate("ns0:Policy1.ns0:FromDate",ll_rec,TRUE)
+		dw_results.object.Pend1[dw_results.rowcount()] = &
+   		  lv_list.trigger event ue_getdate("ns0:Policy1.ns0:ToDate",ll_rec,TRUE)
+	CASE 2
+		dw_results.object.policy2[dw_results.rowcount()] = &
+   		   lv_list.trigger event ue_get_litem("ns0:Policy2.ns0:PolicyNumber",ll_rec,20,TRUE) 
+		dw_results.object.Pstart2[dw_results.rowcount()] = &
+   		  lv_list.trigger event ue_getdate("ns0:Policy2.ns0:FromDate",ll_rec,TRUE)
+		dw_results.object.Pend2[dw_results.rowcount()] = &
+   		  lv_list.trigger event ue_getdate("ns0:Policy2.ns0:ToDate",ll_rec,TRUE)
+	END CHOOSE
+	li_row += 1
+LOOP
+
+// Put is special instructions 2-20-17  and caudit ???****************************
+//dw_results.object.special[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("EstimatedPremium",ll_rec,20,TRUE)	 
+//dw_results.object.special[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("CancellationReason",ll_rec,20,TRUE	  
+//Put in special instructions ***************************************
+  
+// 2-13-2017 phil do you use the current date ?		
+//dw_results.object.insured[dw_results.rowcount()] = &	  
+dw_results.object.recvd_dt[dw_results.rowcount()] = &
+	lv_list.trigger event ue_getdate("Request_Date",ll_rec,TRUE)
+dw_results.object.ordered[dw_results.rowcount()] = &
+    lv_list.trigger event ue_get_litem("ns0:Request1.ns0:OrderedBy",ll_rec,30,TRUE)
+// 2-13-2017 going to need to read the ns0:agent in a loop
+//IF 2-13-2017  For Agent <ns0:Agent>
+dw_results.object.agent_lo[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:AgentName",ll_rec,30,TRUE)
+dw_results.object.ag_add[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:Address1",ll_rec,30,TRUE)
+// Need to handle Agent address 2	  
+//dw_results.object.ag_add[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("ns0:Address2",ll_rec,30,TRUE)
+dw_results.object.ag_city[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:City",ll_rec,20,TRUE)	  
+dw_results.object.ag_state[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:State",ll_rec,2,TRUE)	  
+  dw_results.object.agent_nm[dw_results.rowcount()] = & 
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:CompanyName",ll_rec,30,TRUE)
+dw_results.object.ag_zip[dw_results.rowcount()] = & 
+     lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:Zip",ll_rec,30,TRUE)  
+dw_results.object.ag_phone[dw_results.rowcount()] = &
+  parse_phone(lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:Phone",ll_rec,20,TRUE))
+ // dw_results.object.ag_phone[dw_results.rowcount()] = &
+ //           lv_list.trigger event ue_get_litem("ns0:Agent1.ns0:Phone",ll_rec,30,TRUE)		
+//End IF	For Agent	  
+
+
+//This is for Insured
+//ns0:Location  ns0:Insured  ns0:Location1
+//Company FEIN number where to put ? special instruction ?
+//dw_results.object.special[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("ns0:FEIN",ll_rec,30,TRUE)
+dw_results.object.ins_con[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:ContactName",ll_rec,30,TRUE)
+dw_results.object.ins_city[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:City",ll_rec,20,TRUE)	
+dw_results.object.ins_add[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:Address1",ll_rec,45,TRUE)	
+dw_results.object.insadd2[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:Address2",ll_rec,30,TRUE)				  
+dw_results.object.ins_state[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:State",ll_rec,2,TRUE)	  
+  dw_results.object.Insured[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:CompanyName",ll_rec,30,TRUE)
+dw_results.object.ins_phone[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:Phone",ll_rec,20,TRUE)	
+dw_results.object.ins_zip[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Insured1.ns0:Zip",ll_rec,10,TRUE)	
+	  
+	  
+//ns0:Location  ns0:Insured  ns0:Location2   ( looks like you could have different contacts)
+//dw_results.object.ins_con[dw_results.rowcount()] = &
+ //   lv_list.trigger event ue_get_litem("ns0:Record1.ns0:ContactName",ll_rec,30,TRUE)
+dw_results.object.ins_loc4[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Record1.ns0:City",ll_rec,20,TRUE)	
+dw_results.object.ins_loc[dw_results.rowcount()] = &
+    lv_list.trigger event ue_get_litem("ns0:Record1.ns0:Address1",ll_rec,45,TRUE)	
+dw_results.object.ins_loc2[dw_results.rowcount()] = &
+    lv_list.trigger event ue_get_litem("ns0:Record1.ns0:Address2",ll_rec,30,TRUE)				  
+dw_results.object.loc_st[dw_results.rowcount()] = &
+     lv_list.trigger event ue_get_litem("ns0:Record1.ns0:State",ll_rec,2,TRUE)	  
+ dw_results.object.Insured[dw_results.rowcount()] = &
+    lv_list.trigger event ue_get_litem("ns0:Record1.ns0:CompanyName",ll_rec,30,TRUE)
+//dw_results.object.ins_phone[dw_results.rowcount()] = &
+ //   lv_list.trigger event ue_get_litem("ns0:Record1.ns0:Phone",ll_rec,30,TRUE)	
+dw_results.object.loc_zip[dw_results.rowcount()] = &
+    lv_list.trigger event ue_get_litem("ns0:Record1.ns0:Zip",ll_rec,30,TRUE)	
+	 
+//  Put the multiple locations into special instructions	 
+
+li_row = 1
+DO WHILE lv_list.trigger event ue_getcolumn("ns0:Address" + string(li_row) + ".ns0:AddressType") > 0
+	ls_special += append_special("Location " + string(li_row),lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:CompanyName",ll_rec,45,TRUE)	)
+	ls_special += append_special("Address " + string(li_row),lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:Address1",ll_rec,45,TRUE)	)
+	ls_special += append_special("Address " + string(li_row),lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:Address2",ll_rec,45,TRUE)	)
+	ls_special += append_special("Address " + string(li_row), lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:City",ll_rec,20,TRUE)	+ ", " + &
+	     lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:State",ll_rec,2,TRUE)	  + " " + &
+		lv_list.trigger event ue_get_litem("ns0:Address" + string(li_row) + ".ns0:Zip",ll_rec,30,TRUE))
+	ls_special += "~r~n"
+	li_row += 1
+LOOP
+	 
+	  
+//	//Insert audit information  This is for class codes,  testing phil 2/27/2017
+	dw_audit.insertrow(0)
+	dw_audit.object.control[dw_audit.rowcount()] = dw_results.rowcount() 
+//	Insert Code Information
+	li_row = 1
+	DO WHILE lv_list.trigger event ue_getcolumn("ns0:ClassCode" + string(li_row) + ".ns0:ClassDescription") > 0
+		dw_types.insertrow(0)
+	     dw_types.object.control[dw_types.rowcount()] = dw_results.rowcount() 
+	     dw_types.object.policy[dw_results.rowcount()] = lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:PolicyNumber",ll_rec,20,False) 
+          dw_types.object.cdstate[dw_types.rowcount()] =  lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:StateLocationOfEntity",ll_rec,2,False)
+   	     dw_types.object.cdes[dw_types.rowcount()] =  lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:ClassCodeType",ll_rec,50,False)
+      	dw_types.object.class[dw_types.rowcount()] = lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:ClassDescription",ll_rec,50,FALSE)
+		dw_types.object.estimate[dw_types.rowcount()] = lv_list.trigger event ue_get_litem("ns0:Policy1.ns0:EstimatedPremium",ll_rec,15,False)
+		dw_types.object.expamount[dw_types.rowcount()] = lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:ExposureAmount",ll_rec,15,False)
+      	dw_types.object.exposure[dw_types.rowcount()] = lv_list.trigger event ue_get_litem("ns0:ClassCode" + string(li_row) + ".ns0:ExposureBasisCode",ll_rec,1,False)
+		li_row ++
+	LOOP	  
+
+
+//This is for ClassCode
+//ns0:Policies ns0:ClassCode
+//dw_results.object.ins_city[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:ClassCode",ll_rec,20,TRUE)	  
+//dw_results.object.ins_state[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:ClassCodeDescription",ll_rec,2,TRUE)
+//dw_results.object.ins_state[dw_results.rowcount()] = &
+//     lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:ClassCodeType",ll_rec,2,TRUE)	  	  
+//dw_results.object.ins_phone[dw_results.rowcount()] = &
+//      lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:StateLocationOfEntity",ll_rec,30,TRUE)	
+//dw_results.object.ins_phone[dw_results.rowcount()] = &
+//       lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:ExposureAmout",ll_rec,30,TRUE)
+//dw_results.object.ins_phone[dw_results.rowcount()] = &
+//       lv_list.trigger event ue_get_litem("ns0:ClassCode1.ns0:ExposureBasisCode",ll_rec,30,TRUE)		
+
+
+//This is for second location
+//ns0:ns0:Record 
+
+
+//dw_results.object.agent_nm[dw_results.rowcount()] = &
+// lv_list.trigger event ue_get_litem("ns0:CompanyName",ll_rec,30,TRUE)
+//dw_results.object.insured[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Name",ll_rec,45,TRUE) 
+//dw_results.object.ins_dba[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Name2",ll_rec,45,TRUE) 
+//dw_results.object.ins_add[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Address",ll_rec,45,TRUE) 
+//dw_results.object.ins_city[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_City",ll_rec,20,TRUE) 
+//ls_state = lv_list.trigger event ue_get_litem("Insured_State",ll_rec,2,TRUE) 
+//dw_results.object.ins_state[dw_results.rowcount()] = ls_state
+//dw_results.object.ins_zip[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Zipcode",ll_rec,10,TRUE) 
+//dw_results.object.insadd2[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Address2",ll_rec,30,TRUE) 
+//IF ls_type = "A" THEN
+//	dw_results.object.pstart1[dw_results.rowcount()] = &
+//		lv_list.trigger event ue_getdate("Policy_From",ll_rec,TRUE)
+//	dw_results.object.pend1[dw_results.rowcount()] = &
+//		lv_list.trigger event ue_getdate("Policy_To",ll_rec,TRUE)
+//END IF
+//dw_results.object.ins_con[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_Contact",ll_rec,30,TRUE) 
+//dw_results.object.ins_phone[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Insured_ContactPhone",ll_rec,20,TRUE)
+//dw_results.object.refno[dw_results.rowcount()] = &
+//            lv_list.trigger event ue_get_litem("Order_Number",ll_rec,10,TRUE)
+//
+////Special Instructions
+//ls_desc = lv_list.trigger event ue_get_itemrow("AuditOrLossControlInstruction",ll_rec,1,FALSE)
+//li_count = 1
+//DO WHILE ls_desc <> "N/F"
+//	li_count += 1
+//	ls_special += append_special("Instructions",ls_desc)
+//	ls_desc = lv_list.trigger event ue_get_itemrow("AuditOrLossControlInstruction",ll_rec,li_count,FALSE)
+//LOOP
+//ls_desc = lv_list.trigger event ue_get_itemrow("Instruction",ll_rec,1,FALSE)
+//li_count = 1
+//DO WHILE ls_desc <> "N/F"
+//	li_count += 1
+//	ls_special += append_special("Instructions",ls_desc)
+//	ls_desc = lv_list.trigger event ue_get_itemrow("Instruction",ll_rec,li_count,FALSE)
+//LOOP
+//ls_special += append_special("Retailer",lv_list.trigger event ue_getitem("Retailer",ll_rec,FALSE))
+//ls_special += append_special("Retailer Phone",lv_list.trigger event ue_getitem("Retailer_Phone",ll_rec,FALSE))
+//ls_special += append_special("Agent",lv_list.trigger event ue_getitem("Retailer",ll_rec,FALSE))
+//ls_special += append_special("Business Description",lv_list.trigger event ue_getitem("Business_Desc",ll_rec,FALSE))
+//ls_special += append_special("Type of Coverages",lv_list.trigger event ue_getitem("Type_of_Coverages",ll_rec,FALSE))
+//ls_special += append_special("Verifications",lv_list.trigger event ue_getitem("Verifications",ll_rec,FALSE))
+//ls_special += append_special("CP Rating Basis",lv_list.trigger event ue_getitem("CP_RatingBasis",ll_rec,FALSE))
+//ls_special += append_special("CP Footage",lv_list.trigger event ue_getitem("CP_Footage",ll_rec,FALSE))
+//ls_special += append_special("CP Rate",lv_list.trigger event ue_getitem("CP_Rate",ll_rec,FALSE))
+//IF ls_type = "A" THEN
+//	ls_special += append_special("Audit Location",lv_list.trigger event ue_getitem("Audit_Location_Instruction",ll_rec,FALSE))
+//	ls_special += append_special("Type of Reports",lv_list.trigger event ue_getitem("Type_of_Reports",ll_rec,FALSE))
+//	ls_special += append_special("Previous Policy From",lv_list.trigger event ue_getitem("Previous_Policy_From",ll_rec,FALSE))
+//	ls_special += append_special("Previous Policy To",lv_list.trigger event ue_getitem("Previous_Policy_To",ll_rec,FALSE))
+//ELSE
+//	ls_special += append_special("Report",lv_list.trigger event ue_getitem("Report",ll_rec,FALSE))
+//	ls_special += append_special("Inspection Form",lv_list.trigger event ue_getitem("Inspection_Form",ll_rec,FALSE))
+//	ls_special += append_special("Inspection Form2",lv_list.trigger event ue_getitem("Inspection_Form2",ll_rec,FALSE))
+//	ls_desc = lv_list.trigger event ue_get_itemrow("Class_Description",ll_rec,1,FALSE)
+//	li_count = 1
+//	DO WHILE ls_desc <> "N/F"
+//		li_count += 1
+//		ls_special += append_special("Classes",ls_desc)
+//		ls_desc = lv_list.trigger event ue_get_itemrow("Class_Description",ll_rec,li_count,FALSE)
+//	LOOP
+//END IF
+//dw_results.object.special[dw_results.rowcount()] = ls_special 
+//dw_results.object.zone[dw_results.rowcount()] = 1
+//
+//IF ls_location <> "Same As Insured" THEN
+//	dw_results.object.ins_loc[dw_results.rowcount()]  = ls_location
+//	ls_desc = lv_list.trigger event ue_get_itemrow("Risk_Address2",ll_rec,1,FALSE)
+//	IF ls_desc <> "N/F" THEN
+//		dw_results.object.ins_loc2[dw_results.rowcount()]  =  ls_desc
+//	END IF
+//	dw_results.object.ins_loc4[dw_results.rowcount()] = &
+//		lv_list.trigger event ue_get_itemrow("Risk_City",ll_rec,1,FALSE)
+//	dw_results.object.loc_st[dw_results.rowcount()] = &
+//		lv_list.trigger event ue_get_itemrow("Risk_State",ll_rec,1,FALSE)
+//	dw_results.object.loc_zip[dw_results.rowcount()]  = &
+//		lv_list.trigger event ue_get_itemrow("Risk_Zip",ll_rec,1,FALSE)
+//END IF
+//
+//IF ls_type = "A" THEN
+//	//Insert audit information
+//	dw_audit.insertrow(0)
+//	dw_audit.object.control[dw_audit.rowcount()] = dw_results.rowcount() 
+//	//Insert Code Information
+//	ls_desc = lv_list.trigger event ue_get_itemrow("Class_Description",ll_rec,1,FALSE)
+//	li_count = 1
+//	DO WHILE ls_desc <> "N/F"
+//		li_count += 1
+//		dw_types.insertrow(0)
+//		dw_types.object.control[dw_types.rowcount()] = dw_results.rowcount() 
+//		dw_types.object.cdstate[dw_types.rowcount()] = ls_state
+//		dw_types.object.cdes[dw_types.rowcount()] = lv_list.trigger event ue_getitem("Class_Id",ll_rec,FALSE)
+//		dw_types.object.class[dw_types.rowcount()] = Left(ls_desc,50)
+//		dw_types.object.policy[dw_types.rowcount()] = lv_list.trigger event ue_getitem("Policy_Number",ll_rec,FALSE)
+//		dw_types.object.estimate[dw_types.rowcount()] = lv_list.trigger event ue_getitem("Premium_Basis",ll_rec,FALSE)
+//		dw_types.object.exposure[dw_types.rowcount()] = "P"
+//		ls_desc = lv_list.trigger event ue_get_itemrow("Class_Description",ll_rec,li_count,FALSE)
+//	LOOP
+//END IF
+//
+dw_results.object.special[dw_results.rowcount()] = ls_special 
+dw_results.trigger event ue_set_defaults("Zip")

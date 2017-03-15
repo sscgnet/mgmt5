@@ -1,0 +1,99 @@
+//20170219 SB  New XML load import
+string ls_file, ls_string, ls_label, ls_sublabel, ls_data
+integer li_filenum, li_record, li_col = 0, li_sub = 0
+boolean lb_load = FALSE, lb_setup = FALSE
+
+IF dw_import.visible THEN
+	dw_import.visible = FALSE
+	lv_list.visible = TRUE
+ELSE
+	lv_list.DeleteItems()
+	lv_list.DeleteColumns()
+END IF
+
+IF ls_filename = "" THEN
+	GetFileOpenName("Import File Name", ls_filename, ls_file)
+END IF
+
+IF FileExists(ls_filename) THEN
+	li_filenum = FileOpen(ls_filename)
+	sle_1.text = "Reading " + ls_filename + "...."
+	DO WHILE FileRead(li_filenum, ls_string) >= 0
+		// Start loading or stopping based on xml file load
+		IF trim(ls_string) = "</" + ls_filetype + ">" THEN lb_load = FALSE
+		IF lb_load THEN
+			ls_label = get_xml_label(ls_string)
+			IF get_xml_close(ls_string,ls_label) THEN
+				li_col += 1
+				ls_data = get_xml_data(ls_string, ls_label)
+				IF ls_sublabel = "" THEN
+					lv_list.addcolumn(ls_label, Center!, 1000)
+				ELSE
+					lv_list.addcolumn(ls_sublabel + string(li_sub) + "." + ls_label, Center!, 1000)
+				END IF
+				lv_list.setitem(1,li_col, ls_data)
+			ELSE
+				IF NOT get_xml_close(ls_string,ls_sublabel) THEN
+					IF ls_sublabel = ls_label THEN
+						li_sub += 1
+					ELSE
+						ls_sublabel = ls_label
+						li_sub = 1
+					END IF
+				END IF
+			END IF
+		END IF
+		IF pos(trim(ls_string), "<" + ls_filetype + " ") > 0 or pos(trim(ls_string), "<" + ls_filetype + ">") > 0 THEN 
+			lb_load = TRUE
+			lb_setup = TRUE
+			ls_sublabel = ""
+			li_record = lv_list.additem(ls_filetype,1)
+		END IF
+	LOOP
+	FileClose(li_filenum)
+	sle_1.text = "Complete " + ls_filename
+	ls_path = ls_filename
+ELSE
+	Messagebox("Setup XML", ls_filename + " does not exist.")
+END IF
+
+IF Not lb_setup THEN
+	Messagebox("Setup XML", ls_filetype + " does not exist in xml.")
+END IF	
+RETURN li_record			
+		
+__________________________________________________________________________
+get_xml_close(as_string, as_label) RETURN boolean
+Integer li, li_rpos, li_lpos
+string ls_ret = ""
+
+If pos(as_string, "</" + as_label + ">") > 0 THEN RETURN TRUE
+
+RETURN FALSE
+
+__________________________________________________________________________
+get_xml_data(as_string, as_label) RETURN string
+Integer li, li_rpos, li_lpos
+string ls_ret = ""
+
+li_lpos = pos(as_string,"<" + as_label + ">")
+li_rpos = pos(as_string,"</" + as_label + ">")
+
+IF li_rpos > 0 AND li_lpos > 0 THEN
+	ls_ret = mid(as_string,li_lpos + len(as_label) + 2, li_rpos - li_lpos - len(as_label) - 2)
+END IF
+RETURN ls_ret
+
+
+__________________________________________________________________________
+get_xml_label(as_string) RETURN string
+Integer li, li_rpos, li_lpos
+string ls_ret = ""
+
+li_lpos = pos(as_string,"<")
+li_rpos = pos(as_string,">")
+
+IF li_rpos > 0 AND li_lpos > 0 THEN
+	ls_ret = mid(as_string,li_lpos + 1, li_rpos - li_lpos - 1)
+END IF
+RETURN ls_ret
