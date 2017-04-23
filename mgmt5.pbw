@@ -4,3 +4,5 @@ Save Format v3.0(19990112)
 @begin Targets
  0 "mgmt5.pbt";
 @end;
+DefaultTarget "mgmt5.pbt";
+DefaultRemoteTarget "mgmt5.pbt";
