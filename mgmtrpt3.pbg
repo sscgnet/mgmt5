@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "mgmtrpt3.pbl" "";
+@end;
+@begin Objects
+ "w_spreadsheet_mgmt.srw" "mgmtrpt3.pbl";
+@end;

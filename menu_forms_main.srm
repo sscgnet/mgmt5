@@ -1,0 +1,981 @@
+HA$PBExportHeader$menu_forms_main.srm
+forward
+global type menu_forms_main from menu
+end type
+type m_save from menu within menu_forms_main
+end type
+type m_photos from menu within menu_forms_main
+end type
+type m_forms2 from menu within menu_forms_main
+end type
+type m_forms from menu within menu_forms_main
+end type
+type m_print from menu within menu_forms_main
+end type
+type m_printpdf from menu within menu_forms_main
+end type
+type m_1 from menu within menu_forms_main
+end type
+type m_options from menu within menu_forms_main
+end type
+type m_spellcheck from menu within m_options
+end type
+type m_locationoflogo from menu within m_options
+end type
+type m_photosize from menu within m_options
+end type
+type m_showpictures from menu within m_options
+end type
+type m_showhelptext from menu within m_options
+end type
+type m_showrecommendations from menu within m_options
+end type
+type m_mode-spellcheck from menu within m_options
+end type
+type m_zipinformation from menu within m_options
+end type
+type m_formsdocuments from menu within m_options
+end type
+type m_templatedocuments from menu within m_options
+end type
+type m_printoptions from menu within m_options
+end type
+type m_weblocation from menu within m_options
+end type
+type m_options from menu within menu_forms_main
+m_spellcheck m_spellcheck
+m_locationoflogo m_locationoflogo
+m_photosize m_photosize
+m_showpictures m_showpictures
+m_showhelptext m_showhelptext
+m_showrecommendations m_showrecommendations
+m_mode-spellcheck m_mode-spellcheck
+m_zipinformation m_zipinformation
+m_formsdocuments m_formsdocuments
+m_templatedocuments m_templatedocuments
+m_printoptions m_printoptions
+m_weblocation m_weblocation
+end type
+type m_specialinstructions from menu within menu_forms_main
+end type
+type m_about from menu within menu_forms_main
+end type
+type m_internal from menu within menu_forms_main
+end type
+type m_exit from menu within menu_forms_main
+end type
+global type menu_forms_main from menu
+m_save m_save
+m_photos m_photos
+m_forms2 m_forms2
+m_forms m_forms
+m_print m_print
+m_printpdf m_printpdf
+m_1 m_1
+m_options m_options
+m_specialinstructions m_specialinstructions
+m_about m_about
+m_internal m_internal
+m_exit m_exit
+end type
+end forward
+
+global type menu_forms_main from menu
+m_save m_save
+m_photos m_photos
+m_forms2 m_forms2
+m_forms m_forms
+m_print m_print
+m_printpdf m_printpdf
+m_1 m_1
+m_options m_options
+m_specialinstructions m_specialinstructions
+m_about m_about
+m_internal m_internal
+m_exit m_exit
+end type
+global menu_forms_main menu_forms_main
+
+type variables
+
+end variables
+
+on menu_forms_main.create
+menu_forms_main=this
+call super::create
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_save=create m_save
+this.m_photos=create m_photos
+this.m_forms2=create m_forms2
+this.m_forms=create m_forms
+this.m_print=create m_print
+this.m_printpdf=create m_printpdf
+this.m_1=create m_1
+this.m_options=create m_options
+this.m_specialinstructions=create m_specialinstructions
+this.m_about=create m_about
+this.m_internal=create m_internal
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_photos
+this.Item[UpperBound(this.Item)+1]=this.m_forms2
+this.Item[UpperBound(this.Item)+1]=this.m_forms
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_printpdf
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_options
+this.Item[UpperBound(this.Item)+1]=this.m_specialinstructions
+this.Item[UpperBound(this.Item)+1]=this.m_about
+this.Item[UpperBound(this.Item)+1]=this.m_internal
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on menu_forms_main.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_photos)
+destroy(this.m_forms2)
+destroy(this.m_forms)
+destroy(this.m_print)
+destroy(this.m_printpdf)
+destroy(this.m_1)
+destroy(this.m_options)
+destroy(this.m_specialinstructions)
+destroy(this.m_about)
+destroy(this.m_internal)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within menu_forms_main
+end type
+
+on m_save.create
+call super::create
+this.text = "Save"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+event clicked;w_forms_main.i_active_sheet.trigger event ue_save()
+end event
+
+type m_photos from menu within menu_forms_main
+end type
+
+event clicked;open(w_photos)
+
+end event
+
+on m_photos.create
+call super::create
+this.text = "Photos"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_photos.destroy
+call super::destroy
+end on
+
+type m_forms2 from menu within menu_forms_main
+end type
+
+event clicked;open(w_forms_add)
+w_forms_add.visible = TRUE
+
+end event
+
+on m_forms2.create
+call super::create
+this.text = "Forms"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_forms2.destroy
+call super::destroy
+end on
+
+type m_forms from menu within menu_forms_main
+end type
+
+on m_forms.create
+call super::create
+this.text = "Existing Forms"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_forms.destroy
+call super::destroy
+end on
+
+event clicked;w_forms_main.i_active_sheet.dw_formlist.visible = TRUE
+end event
+
+type m_print from menu within menu_forms_main
+end type
+
+event clicked;w_forms_main.i_active_sheet.trigger event ue_print()
+end event
+
+on m_print.create
+call super::create
+this.text = "Print"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printpdf from menu within menu_forms_main
+end type
+
+event clicked;string ls_aname
+ls_aname = Left(w_forms_main.i_active_sheet.ls_zipfile,len(w_forms_main.i_active_sheet.ls_zipfile) - 4)
+n_cst_printer adobe_reader
+adobe_reader = CREATE n_cst_printer
+
+w_forms_main.i_active_sheet.trigger event ue_print_pdf(adobe_reader,ls_aname,FALSE)
+
+DESTROY adobe_reader;
+
+RUN(ls_aname)
+end event
+
+on m_printpdf.create
+call super::create
+this.visible = false
+this.text = "Print PDF"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printpdf.destroy
+call super::destroy
+end on
+
+type m_1 from menu within menu_forms_main
+end type
+
+event clicked;//w_parent.dw_print.visible = TRUE
+
+end event
+
+on m_1.create
+call super::create
+this.visible = false
+this.text = "Preview"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_options from menu within menu_forms_main
+m_spellcheck m_spellcheck
+m_locationoflogo m_locationoflogo
+m_photosize m_photosize
+m_showpictures m_showpictures
+m_showhelptext m_showhelptext
+m_showrecommendations m_showrecommendations
+m_mode-spellcheck m_mode-spellcheck
+m_zipinformation m_zipinformation
+m_formsdocuments m_formsdocuments
+m_templatedocuments m_templatedocuments
+m_printoptions m_printoptions
+m_weblocation m_weblocation
+end type
+
+on m_options.create
+call super::create
+this.text = "Options"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_spellcheck=create m_spellcheck
+this.m_locationoflogo=create m_locationoflogo
+this.m_photosize=create m_photosize
+this.m_showpictures=create m_showpictures
+this.m_showhelptext=create m_showhelptext
+this.m_showrecommendations=create m_showrecommendations
+this.m_mode-spellcheck=create m_mode-spellcheck
+this.m_zipinformation=create m_zipinformation
+this.m_formsdocuments=create m_formsdocuments
+this.m_templatedocuments=create m_templatedocuments
+this.m_printoptions=create m_printoptions
+this.m_weblocation=create m_weblocation
+this.Item[UpperBound(this.Item)+1]=this.m_spellcheck
+this.Item[UpperBound(this.Item)+1]=this.m_locationoflogo
+this.Item[UpperBound(this.Item)+1]=this.m_photosize
+this.Item[UpperBound(this.Item)+1]=this.m_showpictures
+this.Item[UpperBound(this.Item)+1]=this.m_showhelptext
+this.Item[UpperBound(this.Item)+1]=this.m_showrecommendations
+this.Item[UpperBound(this.Item)+1]=this.m_mode-spellcheck
+this.Item[UpperBound(this.Item)+1]=this.m_zipinformation
+this.Item[UpperBound(this.Item)+1]=this.m_formsdocuments
+this.Item[UpperBound(this.Item)+1]=this.m_templatedocuments
+this.Item[UpperBound(this.Item)+1]=this.m_printoptions
+this.Item[UpperBound(this.Item)+1]=this.m_weblocation
+end on
+
+on m_options.destroy
+call super::destroy
+destroy(this.m_spellcheck)
+destroy(this.m_locationoflogo)
+destroy(this.m_photosize)
+destroy(this.m_showpictures)
+destroy(this.m_showhelptext)
+destroy(this.m_showrecommendations)
+destroy(this.m_mode-spellcheck)
+destroy(this.m_zipinformation)
+destroy(this.m_formsdocuments)
+destroy(this.m_templatedocuments)
+destroy(this.m_printoptions)
+destroy(this.m_weblocation)
+end on
+
+type m_spellcheck from menu within m_options
+end type
+
+event clicked;w_forms_main.i_active_sheet.trigger event ue_spellcheck()
+end event
+
+on m_spellcheck.create
+call super::create
+this.text = "Spell Check"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_spellcheck.destroy
+call super::destroy
+end on
+
+type m_locationoflogo from menu within m_options
+end type
+
+event clicked;string ls_file
+ls_file = ProfileSTring(gs_ini,"MAIN","InspectLogo","")
+
+IF Messagebox("Logo Location","Location of Logo:  " + ls_file + &
+	"~r~nDo you wish to change",Question!, YesNo!,2) = 1 THEN
+	set_ini("!Logo location","MAIN","InspectLogo","",TRUE)
+END IF
+
+
+end event
+
+on m_locationoflogo.create
+call super::create
+this.visible = false
+this.text = "Location of Logo"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_locationoflogo.destroy
+call super::destroy
+end on
+
+type m_photosize from menu within m_options
+end type
+
+event clicked;set_ini("JPEG COMPRESSOR","MAIN","JPEG","EMAGE",TRUE)
+set_ini("PHOTO RESIZE  Yes or No","PHOTOS","RESIZE","YES",TRUE)
+//set_ini("Photo Size","MAIN","PhotoSize","100",TRUE)
+end event
+
+on m_photosize.create
+call super::create
+this.text = "Photo Options"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_photosize.destroy
+call super::destroy
+end on
+
+type m_showpictures from menu within m_options
+end type
+
+on m_showpictures.create
+call super::create
+this.text = "Show Pictures"
+this.checked = true
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showpictures.destroy
+call super::destroy
+end on
+
+event clicked;IF this.checked THEN
+	this.checked = FALSE
+	w_forms_main.i_active_sheet.lb_photo = FALSE
+	w_forms_main.i_active_sheet.trigger event ue_display_pictures(FALSE)
+	SetProfileString(gs_ini,"FORMS","Pictures","NO")
+ELSE
+	this.checked = TRUE
+	w_forms_main.i_active_sheet.lb_photo = TRUE
+	w_forms_main.i_active_sheet.trigger event ue_display_pictures(TRUE)
+	SetProfileString(gs_ini,"FORMS","Pictures","YES")
+END IF
+end event
+
+type m_showhelptext from menu within m_options
+end type
+
+event clicked;w_forms_main.i_active_sheet.dw_help.visible = TRUE
+
+end event
+
+on m_showhelptext.create
+call super::create
+this.text = "Show Help Text"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showhelptext.destroy
+call super::destroy
+end on
+
+type m_showrecommendations from menu within m_options
+end type
+
+event clicked;set_ini("Recommendations File Name",w_forms_main.i_active_sheet.ls_form,"Recs","recs",FALSE)
+w_forms_main.i_active_sheet.dw_rec_list.trigger event ue_reretrieve()
+w_forms_main.i_active_sheet.dw_rec_list.visible = TRUE
+
+end event
+
+on m_showrecommendations.create
+call super::create
+this.text = "Show Recommendations"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_showrecommendations.destroy
+call super::destroy
+end on
+
+type m_mode-spellcheck from menu within m_options
+end type
+
+event clicked;IF this.checked THEN
+	SetProfileString(gs_ini,"MAIN","SpellCheck","FALSE")
+	this.checked = FALSE
+ELSE
+	SetProfileString(gs_ini,"MAIN","SpellCheck","TRUE")
+	this.checked = TRUE
+END IF
+
+end event
+
+on m_mode-spellcheck.create
+call super::create
+this.text = "Mode-Spell Check"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_mode-spellcheck.destroy
+call super::destroy
+end on
+
+type m_zipinformation from menu within m_options
+end type
+
+event clicked;openwithparm(w_simplezip,w_forms_main.i_active_sheet.ls_zipfile)
+w_simplezip.trigger event ue_getdir(get_pathname(w_forms_main.i_active_sheet.ls_filename))
+
+end event
+
+on m_zipinformation.create
+call super::create
+this.text = "Zip Information"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_zipinformation.destroy
+call super::destroy
+end on
+
+type m_formsdocuments from menu within m_options
+end type
+
+event clicked;open(w_forms_docs)
+end event
+
+on m_formsdocuments.create
+call super::create
+this.text = "Forms Documents"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_formsdocuments.destroy
+call super::destroy
+end on
+
+type m_templatedocuments from menu within m_options
+end type
+
+event clicked;openwithparm(w_forms_docs,"SSCG")
+end event
+
+on m_templatedocuments.create
+call super::create
+this.text = "Template Documents"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_templatedocuments.destroy
+call super::destroy
+end on
+
+type m_printoptions from menu within m_options
+end type
+
+event clicked;IF Messagebox("Print Options",  &
+	"Combine File:  " + ProfileString(gs_ini,"MAIN","sscg_dyn.pbl","N/A")  + &
+	"~r~n~r~n   Do you wish to change", Question!, YesNo!,2) = 1 THEN
+	
+	set_ini("!SSCG_DYN.PBD","MAIN","sscg_dyn.pbl","",TRUE)
+END IF
+
+end event
+
+on m_printoptions.create
+call super::create
+this.text = "Print Options"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printoptions.destroy
+call super::destroy
+end on
+
+type m_weblocation from menu within m_options
+end type
+
+event clicked;set_ini("Location of Web Files","FTP","Repfiles","/repfiles",TRUE)
+end event
+
+on m_weblocation.create
+call super::create
+this.text = "Web Location"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_weblocation.destroy
+call super::destroy
+end on
+
+type m_specialinstructions from menu within menu_forms_main
+end type
+
+on m_specialinstructions.create
+call super::create
+this.text = "Special Instructions"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_specialinstructions.destroy
+call super::destroy
+end on
+
+event clicked;openwithparm(w_forms_special,"ABOUT")
+end event
+
+type m_about from menu within menu_forms_main
+end type
+
+event clicked;open(w_forms_about)
+end event
+
+on m_about.create
+call super::create
+this.text = "About"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+
+type m_internal from menu within menu_forms_main
+end type
+
+on m_internal.create
+call super::create
+this.visible = false
+this.text = "Internal"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_internal.destroy
+call super::destroy
+end on
+
+type m_exit from menu within menu_forms_main
+end type
+
+event clicked;close(w_forms_main)
+end event
+
+on m_exit.create
+call super::create
+this.text = "Exit"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+

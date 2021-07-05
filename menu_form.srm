@@ -1,0 +1,269 @@
+HA$PBExportHeader$menu_form.srm
+forward
+global type menu_form from menu
+end type
+type m_save from menu within menu_form
+end type
+type m_print from menu within menu_form
+end type
+type m_printpdf from menu within menu_form
+end type
+type m_1 from menu within menu_form
+end type
+type m_defaults from menu within menu_form
+end type
+type m_options from menu within menu_form
+end type
+type m_showpictures from menu within m_options
+end type
+type m_showhelptext from menu within m_options
+end type
+type m_mode-spellcheck from menu within m_options
+end type
+type m_options from menu within menu_form
+m_showpictures m_showpictures
+m_showhelptext m_showhelptext
+m_mode-spellcheck m_mode-spellcheck
+end type
+type m_exit from menu within menu_form
+end type
+global type menu_form from menu
+m_save m_save
+m_print m_print
+m_printpdf m_printpdf
+m_1 m_1
+m_defaults m_defaults
+m_options m_options
+m_exit m_exit
+end type
+end forward
+
+global type menu_form from menu
+m_save m_save
+m_print m_print
+m_printpdf m_printpdf
+m_1 m_1
+m_defaults m_defaults
+m_options m_options
+m_exit m_exit
+end type
+global menu_form menu_form
+
+type variables
+w_forms w_parent
+end variables
+
+on menu_form.create
+menu_form=this
+call super::create
+this.m_save=create m_save
+this.m_print=create m_print
+this.m_printpdf=create m_printpdf
+this.m_1=create m_1
+this.m_defaults=create m_defaults
+this.m_options=create m_options
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_printpdf
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_defaults
+this.Item[UpperBound(this.Item)+1]=this.m_options
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on menu_form.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_print)
+destroy(this.m_printpdf)
+destroy(this.m_1)
+destroy(this.m_defaults)
+destroy(this.m_options)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within menu_form
+end type
+
+on m_save.create
+call super::create
+this.text = "Save"
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+event clicked;w_parent.dw_defaultw.trigger event ue_update()
+end event
+
+type m_print from menu within menu_form
+end type
+
+event clicked;w_parent.dw_defaultw.trigger event ue_update()
+w_parent.dw_defaultw.trigger event ue_print_report()
+end event
+
+on m_print.create
+call super::create
+this.text = "Print"
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printpdf from menu within menu_form
+end type
+
+event clicked;n_cst_printer adobe_reader
+adobe_reader = CREATE n_cst_printer
+
+w_parent.dw_defaultw.trigger event ue_print_pdf(adobe_reader,"","ALL")
+
+DESTROY adobe_reader;
+end event
+
+on m_printpdf.create
+call super::create
+this.text = "Print PDF"
+end on
+
+on m_printpdf.destroy
+call super::destroy
+end on
+
+type m_1 from menu within menu_form
+end type
+
+event clicked;w_parent.dw_print.visible = TRUE
+
+end event
+
+on m_1.create
+call super::create
+this.visible = false
+this.text = "Preview"
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_defaults from menu within menu_form
+end type
+
+event clicked;w_parent.dw_defaultw.trigger event ue_values()
+IF ProfileString(gs_ini,"Utilities","FormInfo","") = "YES" THEN
+	run("notepad " + w_forms.ls_filename)
+END IF
+
+end event
+
+on m_defaults.create
+call super::create
+this.text = "Defaults"
+end on
+
+on m_defaults.destroy
+call super::destroy
+end on
+
+type m_options from menu within menu_form
+m_showpictures m_showpictures
+m_showhelptext m_showhelptext
+m_mode-spellcheck m_mode-spellcheck
+end type
+
+on m_options.create
+call super::create
+this.text = "Options"
+this.m_showpictures=create m_showpictures
+this.m_showhelptext=create m_showhelptext
+this.m_mode-spellcheck=create m_mode-spellcheck
+this.Item[UpperBound(this.Item)+1]=this.m_showpictures
+this.Item[UpperBound(this.Item)+1]=this.m_showhelptext
+this.Item[UpperBound(this.Item)+1]=this.m_mode-spellcheck
+end on
+
+on m_options.destroy
+call super::destroy
+destroy(this.m_showpictures)
+destroy(this.m_showhelptext)
+destroy(this.m_mode-spellcheck)
+end on
+
+type m_showpictures from menu within m_options
+end type
+
+on m_showpictures.create
+call super::create
+this.text = "Show Pictures"
+end on
+
+on m_showpictures.destroy
+call super::destroy
+end on
+
+event clicked;IF this.checked THEN
+	this.checked = FALSE
+	w_parent.dw_defaultw.trigger event ue_display_pictures(FALSE)
+ELSE
+	this.checked = TRUE
+	w_parent.dw_defaultw.trigger event ue_display_pictures(TRUE)
+END IF
+end event
+
+type m_showhelptext from menu within m_options
+end type
+
+event clicked;w_parent.dw_help.visible = TRUE
+end event
+
+on m_showhelptext.create
+call super::create
+this.text = "Show Help Text"
+end on
+
+on m_showhelptext.destroy
+call super::destroy
+end on
+
+type m_mode-spellcheck from menu within m_options
+end type
+
+event clicked;IF this.checked THEN
+	SetProfileString(gs_ini,"MAIN","SpellCheck","FALSE")
+	this.checked = FALSE
+ELSE
+	SetProfileString(gs_ini,"MAIN","SpellCheck","TRUE")
+	this.checked = TRUE
+END IF
+
+end event
+
+on m_mode-spellcheck.create
+call super::create
+this.text = "Mode-Spell Check"
+end on
+
+on m_mode-spellcheck.destroy
+call super::destroy
+end on
+
+type m_exit from menu within menu_form
+end type
+
+event clicked;close(ParentWindow)
+end event
+
+on m_exit.create
+call super::create
+this.text = "Exit"
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+

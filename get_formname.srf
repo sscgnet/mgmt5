@@ -1,0 +1,23 @@
+HA$PBExportHeader$get_formname.srf
+global type get_formname from function_object
+end type
+
+forward prototypes
+global function string get_formname (string ls_filename)
+end prototypes
+
+global function string get_formname (string ls_filename);integer lpos, rpos
+string ls_form
+	ls_form = get_filename(ls_filename)
+	lpos = pos(ls_form,"_")
+	rpos = pos(ls_form,"-",lpos)
+	IF rpos > 0 THEN
+		rpos = rpos - lpos - 1
+	ELSE
+		rpos = len(ls_form) - lpos - 4
+	END IF
+	ls_form = Mid(ls_form,lpos + 1, rpos)
+RETURN ls_Form	
+	
+end function
+

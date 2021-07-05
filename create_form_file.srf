@@ -1,0 +1,46 @@
+HA$PBExportHeader$create_form_file.srf
+global type create_form_file from function_object
+end type
+
+forward prototypes
+global function string create_form_file (string ls_filename, string ls_form, string ls_des)
+end prototypes
+
+global function string create_form_file (string ls_filename, string ls_form, string ls_des);integer li_file, li_length, li, lx
+string ls_record, ls_item, ls_field, ls_ctype, ls_memo, ls_fname, ls_zip
+boolean lb_save = TRUE
+
+IF pos(ls_filename,".mpz") = 0 THEN ls_filename += ".mpz"
+IF FileExists(ls_filename) THEN RETURN ls_filename
+
+ls_fname = ls_filename
+ls_fname = "01" + ls_form
+ls_fname = get_pathname(ls_filename) + ls_fname + ".mpf"
+
+li_file = FileOpen(ls_fname,LineMode!,Write!,LockReadWrite!,Replace!)
+FOR lx = 1 to len(ls_des)
+	IF mid(ls_des,lx,1) = "~~" THEN
+		FileWrite(li_file, ls_item + "~~")
+		ls_item = ""
+	ELSE
+		ls_item += mid(ls_des,lx,1)
+	END IF
+NEXT
+IF ls_item <> "" THEN FileWrite(li_file,ls_item + "~~")
+FileClose(li_file)
+
+ls_zip = Left(ls_filename,len(ls_filename) - 1) + "z"
+li_file = FileOpen(get_pathname(ls_filename) + "main.mpf",LineMode!,Write!,LockReadWrite!,Replace!)
+FileWrite(li_file, get_filename(ls_fname))
+FileWrite(li_file, "0000DUPLS" + ls_form)
+FileClose(li_file)
+
+openwithparm(w_simplezip,ls_zip)
+w_simplezip.lb_list.additem(get_pathname(ls_filename) + "main.mpf")
+w_simplezip.lb_list.additem(ls_fname)
+w_simplezip.zipfile(FALSE,TRUE)
+Close(w_simplezip)
+
+RETURN ls_filename
+end function
+

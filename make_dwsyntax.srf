@@ -1,0 +1,76 @@
+HA$PBExportHeader$make_dwsyntax.srf
+global type make_dwsyntax from function_object
+end type
+
+forward prototypes
+global function integer make_dwsyntax (string ls_import, string ablb_data)
+end prototypes
+
+global function integer make_dwsyntax (string ls_import, string ablb_data);integer li_FileNo, li_Writes, li_Cnt
+long ll_BlobLen, ll_CurrentPos
+string lblb_Data, ls_formname
+
+ls_formname = get_filename(ls_import)
+IF pos(ls_formname,"w_" ) > 0 THEN
+	IF pos(ablb_data,"$PBExportHeader") = 0 THEN
+		//ablb_data = "$PBExportHeader$"+ ls_formname + "~r~n" + ablb_data
+	END IF
+END IF
+li_FileNo = FileOpen(ls_import, StreamMode!, Write!, LockReadWrite!, Replace!)
+If li_FileNo < 0 Then Return -1
+
+ 
+
+ll_BlobLen = Len(ablb_Data)
+
+ 
+
+// Determine the number of writes required 
+
+// to write the entire blob
+
+If ll_BlobLen > 32765 Then
+
+   If Mod(ll_BlobLen, 32765) = 0 Then
+
+      li_Writes = ll_BlobLen / 32765
+
+   Else
+
+      li_Writes = (ll_BlobLen / 32765) + 1
+
+   End if
+
+Else
+
+   li_Writes = 1
+
+End if
+
+ 
+
+ll_CurrentPos = 1
+
+ 
+
+For li_Cnt = 1 To li_Writes
+
+   lblb_Data = Mid(ablb_Data, ll_CurrentPos, 32765)
+
+   ll_CurrentPos += 32765
+
+   If FileWrite(li_FileNo, lblb_Data) = -1 Then
+
+      Return -1
+
+   End if
+
+Next
+
+ 
+
+FileClose(li_FileNo)
+
+Return 1
+end function
+

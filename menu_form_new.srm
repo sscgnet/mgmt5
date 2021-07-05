@@ -1,0 +1,1003 @@
+HA$PBExportHeader$menu_form_new.srm
+forward
+global type menu_form_new from menu_forms_main
+end type
+type m_validationreport from menu within m_internal
+end type
+type m_validated from menu within m_internal
+end type
+type m_validationcolors from menu within m_internal
+end type
+type m_checkfield from menu within m_internal
+end type
+type m_worddocs from menu within m_internal
+end type
+type m_printwordiniinformation from menu within m_worddocs
+end type
+type m_openworddoc from menu within m_worddocs
+end type
+type m_testworddoc from menu within m_worddocs
+end type
+type m_loadworddoc from menu within m_worddocs
+end type
+type m_worddocs from menu within m_internal
+m_printwordiniinformation m_printwordiniinformation
+m_openworddoc m_openworddoc
+m_testworddoc m_testworddoc
+m_loadworddoc m_loadworddoc
+end type
+type m_worddocsoption2 from menu within m_internal
+end type
+type m_2 from menu within m_internal
+end type
+type m_openexceldoc from menu within m_2
+end type
+type m_printexceliniinformation from menu within m_2
+end type
+type m_testexceldoc from menu within m_2
+end type
+type m_loadexceldoc from menu within m_2
+end type
+type m_2 from menu within m_internal
+m_openexceldoc m_openexceldoc
+m_printexceliniinformation m_printexceliniinformation
+m_testexceldoc m_testexceldoc
+m_loadexceldoc m_loadexceldoc
+end type
+type m_exportdoc from menu within m_internal
+end type
+type m_internal from menu_forms_main`m_internal within menu_form_new
+m_validationreport m_validationreport
+m_validated m_validated
+m_validationcolors m_validationcolors
+m_checkfield m_checkfield
+m_worddocs m_worddocs
+m_worddocsoption2 m_worddocsoption2
+m_2 m_2
+m_exportdoc m_exportdoc
+end type
+end forward
+
+global type menu_form_new from menu_forms_main
+end type
+global menu_form_new menu_form_new
+
+on menu_form_new.create
+menu_form_new=this
+call super::create
+end on
+
+on menu_form_new.destroy
+call super::destroy
+end on
+
+type m_save from menu_forms_main`m_save within menu_form_new
+end type
+
+on m_save.create
+call super::create
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_photos from menu_forms_main`m_photos within menu_form_new
+end type
+
+on m_photos.create
+call super::create
+end on
+
+on m_photos.destroy
+call super::destroy
+end on
+
+type m_forms2 from menu_forms_main`m_forms2 within menu_form_new
+end type
+
+on m_forms2.create
+call super::create
+end on
+
+on m_forms2.destroy
+call super::destroy
+end on
+
+type m_forms from menu_forms_main`m_forms within menu_form_new
+end type
+
+on m_forms.create
+call super::create
+end on
+
+on m_forms.destroy
+call super::destroy
+end on
+
+type m_print from menu_forms_main`m_print within menu_form_new
+end type
+
+on m_print.create
+call super::create
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printpdf from menu_forms_main`m_printpdf within menu_form_new
+end type
+
+on m_printpdf.create
+call super::create
+end on
+
+on m_printpdf.destroy
+call super::destroy
+end on
+
+type m_1 from menu_forms_main`m_1 within menu_form_new
+end type
+
+on m_1.create
+call super::create
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_options from menu_forms_main`m_options within menu_form_new
+end type
+
+on m_options.create
+call super::create
+end on
+
+on m_options.destroy
+call super::destroy
+end on
+
+type m_spellcheck from menu_forms_main`m_spellcheck within m_options
+end type
+
+on m_spellcheck.create
+call super::create
+end on
+
+on m_spellcheck.destroy
+call super::destroy
+end on
+
+type m_locationoflogo from menu_forms_main`m_locationoflogo within m_options
+end type
+
+on m_locationoflogo.create
+call super::create
+end on
+
+on m_locationoflogo.destroy
+call super::destroy
+end on
+
+type m_photosize from menu_forms_main`m_photosize within m_options
+end type
+
+on m_photosize.create
+call super::create
+end on
+
+on m_photosize.destroy
+call super::destroy
+end on
+
+type m_showpictures from menu_forms_main`m_showpictures within m_options
+end type
+
+on m_showpictures.create
+call super::create
+end on
+
+on m_showpictures.destroy
+call super::destroy
+end on
+
+type m_showhelptext from menu_forms_main`m_showhelptext within m_options
+end type
+
+on m_showhelptext.create
+call super::create
+end on
+
+on m_showhelptext.destroy
+call super::destroy
+end on
+
+type m_showrecommendations from menu_forms_main`m_showrecommendations within m_options
+end type
+
+on m_showrecommendations.create
+call super::create
+end on
+
+on m_showrecommendations.destroy
+call super::destroy
+end on
+
+type m_mode-spellcheck from menu_forms_main`m_mode-spellcheck within m_options
+end type
+
+on m_mode-spellcheck.create
+call super::create
+end on
+
+on m_mode-spellcheck.destroy
+call super::destroy
+end on
+
+type m_zipinformation from menu_forms_main`m_zipinformation within m_options
+end type
+
+on m_zipinformation.create
+call super::create
+end on
+
+on m_zipinformation.destroy
+call super::destroy
+end on
+
+type m_formsdocuments from menu_forms_main`m_formsdocuments within m_options
+end type
+
+on m_formsdocuments.create
+call super::create
+end on
+
+on m_formsdocuments.destroy
+call super::destroy
+end on
+
+type m_templatedocuments from menu_forms_main`m_templatedocuments within m_options
+end type
+
+on m_templatedocuments.create
+call super::create
+end on
+
+on m_templatedocuments.destroy
+call super::destroy
+end on
+
+type m_printoptions from menu_forms_main`m_printoptions within m_options
+end type
+
+on m_printoptions.create
+call super::create
+end on
+
+on m_printoptions.destroy
+call super::destroy
+end on
+
+type m_weblocation from menu_forms_main`m_weblocation within m_options
+end type
+
+on m_weblocation.create
+call super::create
+end on
+
+on m_weblocation.destroy
+call super::destroy
+end on
+
+type m_specialinstructions from menu_forms_main`m_specialinstructions within menu_form_new
+end type
+
+on m_specialinstructions.create
+call super::create
+end on
+
+on m_specialinstructions.destroy
+call super::destroy
+end on
+
+type m_about from menu_forms_main`m_about within menu_form_new
+end type
+
+on m_about.create
+call super::create
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+
+type m_internal from menu_forms_main`m_internal within menu_form_new
+m_validationreport m_validationreport
+m_validated m_validated
+m_validationcolors m_validationcolors
+m_checkfield m_checkfield
+m_worddocs m_worddocs
+m_worddocsoption2 m_worddocsoption2
+m_2 m_2
+m_exportdoc m_exportdoc
+end type
+
+on m_internal.create
+call super::create
+this.m_validationreport=create m_validationreport
+this.m_validated=create m_validated
+this.m_validationcolors=create m_validationcolors
+this.m_checkfield=create m_checkfield
+this.m_worddocs=create m_worddocs
+this.m_worddocsoption2=create m_worddocsoption2
+this.m_2=create m_2
+this.m_exportdoc=create m_exportdoc
+this.Item[UpperBound(this.Item)+1]=this.m_validationreport
+this.Item[UpperBound(this.Item)+1]=this.m_validated
+this.Item[UpperBound(this.Item)+1]=this.m_validationcolors
+this.Item[UpperBound(this.Item)+1]=this.m_checkfield
+this.Item[UpperBound(this.Item)+1]=this.m_worddocs
+this.Item[UpperBound(this.Item)+1]=this.m_worddocsoption2
+this.Item[UpperBound(this.Item)+1]=this.m_2
+this.Item[UpperBound(this.Item)+1]=this.m_exportdoc
+end on
+
+on m_internal.destroy
+call super::destroy
+destroy(this.m_validationreport)
+destroy(this.m_validated)
+destroy(this.m_validationcolors)
+destroy(this.m_checkfield)
+destroy(this.m_worddocs)
+destroy(this.m_worddocsoption2)
+destroy(this.m_2)
+destroy(this.m_exportdoc)
+end on
+
+type m_exit from menu_forms_main`m_exit within menu_form_new
+end type
+
+on m_exit.create
+call super::create
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_validationreport from menu within m_internal
+end type
+
+event clicked;w_forms_main.i_active_sheet.u_to_open[1].dw_defaultw.trigger event ue_validation_report()
+end event
+
+on m_validationreport.create
+call super::create
+this.text = "Validation Report"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_validationreport.destroy
+call super::destroy
+end on
+
+type m_validated from menu within m_internal
+end type
+
+on m_validated.create
+call super::create
+this.text = "Internal Keys"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_validated.destroy
+call super::destroy
+end on
+
+event clicked;w_forms_main.i_active_sheet.u_to_open[1].dw_defaultw.trigger event ue_validate_keys()
+end event
+
+type m_validationcolors from menu within m_internal
+end type
+
+on m_validationcolors.create
+call super::create
+this.text = "Validation Colors"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_validationcolors.destroy
+call super::destroy
+end on
+
+event clicked;openwithparm(w_ask,"Validation Color Scheme 2=ISI")
+CHOOSE CASE message.stringparm
+CASE "2"
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","VEmpty","25231359")
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","Valid","15780518")
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","Vopt","15975901")
+CASE ELSE
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","VEmpty","16777215")
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","Valid","12632256")
+	SetProfileString(w_forms_main.i_active_sheet.is_formini,"Forms","Vopt","16777215")
+END CHOOSE
+end event
+
+type m_checkfield from menu within m_internal
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ 
+ly = 1
+
+openwithparm(w_ask,"Field Name")
+ls_name = message.stringparm
+li_col = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger event ue_check_field(w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw,ls_name)
+li_floc = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger event ue_check_field(w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw, Left(ls_name,len(ls_name) - 1) + "xx")
+IF li_floc > 0 THEN	
+	ls_return = "[Checkbox]" + w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.object.data[ly,li_floc]
+	w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.Modify(ls_name + ".Background.Color='255'")			
+ELSE
+	IF li_col > 0 THEN
+		ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.object.data[ly,li_col]
+		w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.Modify(ls_name + ".Background.Color='255'")			
+	END IF
+END IF
+Messagebox(string(li_col) + "-" + ls_name,string(ls_return))
+end event
+
+on m_checkfield.create
+call super::create
+this.text = "Check Field"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_checkfield.destroy
+call super::destroy
+end on
+
+type m_worddocs from menu within m_internal
+m_printwordiniinformation m_printwordiniinformation
+m_openworddoc m_openworddoc
+m_testworddoc m_testworddoc
+m_loadworddoc m_loadworddoc
+end type
+
+on m_worddocs.create
+call super::create
+this.text = "Word Docs"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_printwordiniinformation=create m_printwordiniinformation
+this.m_openworddoc=create m_openworddoc
+this.m_testworddoc=create m_testworddoc
+this.m_loadworddoc=create m_loadworddoc
+this.Item[UpperBound(this.Item)+1]=this.m_printwordiniinformation
+this.Item[UpperBound(this.Item)+1]=this.m_openworddoc
+this.Item[UpperBound(this.Item)+1]=this.m_testworddoc
+this.Item[UpperBound(this.Item)+1]=this.m_loadworddoc
+end on
+
+on m_worddocs.destroy
+call super::destroy
+destroy(this.m_printwordiniinformation)
+destroy(this.m_openworddoc)
+destroy(this.m_testworddoc)
+destroy(this.m_loadworddoc)
+end on
+
+type m_printwordiniinformation from menu within m_worddocs
+end type
+
+on m_printwordiniinformation.create
+call super::create
+this.text = "Print Word Ini Information"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printwordiniinformation.destroy
+call super::destroy
+end on
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_wordini("")
+close(w_waiting)
+
+
+end event
+
+type m_openworddoc from menu within m_worddocs
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_create_word("")
+
+IF Left(ls_return,3) = "N/F" THEN
+	Messagebox("Template","Template not found " + ls_return)
+else
+	run_file(ls_return)
+END IF
+close(w_waiting)
+end event
+
+on m_openworddoc.create
+call super::create
+this.text = "Open Word Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_openworddoc.destroy
+call super::destroy
+end on
+
+type m_testworddoc from menu within m_worddocs
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_wordini("Test")
+close(w_waiting)
+
+end event
+
+on m_testworddoc.create
+call super::create
+this.text = "Test Word Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_testworddoc.destroy
+call super::destroy
+end on
+
+type m_loadworddoc from menu within m_worddocs
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_create_word(get_dir("TEMP","") + w_forms_main.i_active_sheet.ls_form)
+
+IF Left(ls_return,3) = "N/F" THEN
+	Messagebox("Template","Template not found " + ls_return)
+else
+	run_file(ls_return)
+END IF
+close(w_waiting)
+end event
+
+on m_loadworddoc.create
+call super::create
+this.text = "Load Word Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_loadworddoc.destroy
+call super::destroy
+end on
+
+type m_worddocsoption2 from menu within m_internal
+end type
+
+event clicked;string is_fullname, is_filename
+if GetFileOpenName ("Open", is_fullname, is_filename, &
+   "Dot", "Doc Files (*.dot),*.dot","i:\program10\isi_forms", 512) = 1 then
+	w_forms_main.i_active_sheet.dw_rec_list.trigger event ue_dataobject("dw_custom_fields")
+					
+end if
+	
+end event
+
+on m_worddocsoption2.create
+call super::create
+this.text = "Word Docs Option 2"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_worddocsoption2.destroy
+call super::destroy
+end on
+
+type m_2 from menu within m_internal
+m_openexceldoc m_openexceldoc
+m_printexceliniinformation m_printexceliniinformation
+m_testexceldoc m_testexceldoc
+m_loadexceldoc m_loadexceldoc
+end type
+
+on m_2.create
+call super::create
+this.text = "Excel Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_openexceldoc=create m_openexceldoc
+this.m_printexceliniinformation=create m_printexceliniinformation
+this.m_testexceldoc=create m_testexceldoc
+this.m_loadexceldoc=create m_loadexceldoc
+this.Item[UpperBound(this.Item)+1]=this.m_openexceldoc
+this.Item[UpperBound(this.Item)+1]=this.m_printexceliniinformation
+this.Item[UpperBound(this.Item)+1]=this.m_testexceldoc
+this.Item[UpperBound(this.Item)+1]=this.m_loadexceldoc
+end on
+
+on m_2.destroy
+call super::destroy
+destroy(this.m_openexceldoc)
+destroy(this.m_printexceliniinformation)
+destroy(this.m_testexceldoc)
+destroy(this.m_loadexceldoc)
+end on
+
+type m_openexceldoc from menu within m_2
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_create_excel("")
+
+IF Left(ls_return,3) = "N/F" THEN
+	Messagebox("Template","Template not found " + ls_return)
+else
+	run_file(ls_return)
+END IF
+close(w_waiting)
+end event
+
+on m_openexceldoc.create
+call super::create
+this.text = "Open Excel Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_openexceldoc.destroy
+call super::destroy
+end on
+
+type m_printexceliniinformation from menu within m_2
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_wordini("")
+close(w_waiting)
+
+
+end event
+
+on m_printexceliniinformation.create
+call super::create
+this.text = "Print Excel Ini Information"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printexceliniinformation.destroy
+call super::destroy
+end on
+
+type m_testexceldoc from menu within m_2
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_wordini("Test")
+close(w_waiting)
+end event
+
+on m_testexceldoc.create
+call super::create
+this.text = "Test Excel Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_testexceldoc.destroy
+call super::destroy
+end on
+
+type m_loadexceldoc from menu within m_2
+end type
+
+event clicked;string ls_name, ls_return = "N/A"
+integer li_col, ly, li_floc, li_tab
+li_tab = 1
+ly = 1
+
+open(w_waiting)
+ls_return = w_forms_main.i_active_sheet.u_to_open[li_tab].dw_defaultw.trigger &
+	event ue_create_excel(get_dir("TEMP","") + w_forms_main.i_active_sheet.ls_form)
+
+IF Left(ls_return,3) = "N/F" THEN
+	Messagebox("Template","Template not found " + ls_return)
+else
+	run_file(ls_return)
+END IF
+close(w_waiting)
+end event
+
+on m_loadexceldoc.create
+call super::create
+this.text = "Load Excel Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_loadexceldoc.destroy
+call super::destroy
+end on
+
+type m_exportdoc from menu within m_internal
+end type
+
+event clicked;w_forms_main.i_active_sheet.u_to_open[1].dw_defaultw.saveas("c:\sscgtemp\testdoc.txt",CSV!,FALSE)
+end event
+
+on m_exportdoc.create
+call super::create
+this.text = "Export Doc"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exportdoc.destroy
+call super::destroy
+end on
+

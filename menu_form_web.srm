@@ -1,0 +1,149 @@
+HA$PBExportHeader$menu_form_web.srm
+forward
+global type menu_form_web from menu
+end type
+type m_save from menu within menu_form_web
+end type
+type m_print from menu within menu_form_web
+end type
+type m_exit from menu within menu_form_web
+end type
+global type menu_form_web from menu
+m_save m_save
+m_print m_print
+m_exit m_exit
+end type
+end forward
+
+global type menu_form_web from menu
+m_save m_save
+m_print m_print
+m_exit m_exit
+end type
+global menu_form_web menu_form_web
+
+on menu_form_web.create
+menu_form_web=this
+call super::create
+this.text = "menu_form_web"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_save=create m_save
+this.m_print=create m_print
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on menu_form_web.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_print)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within menu_form_web
+end type
+
+event clicked;w_forms_web.trigger event ue_save(FALSE)
+end event
+
+on m_save.create
+call super::create
+this.text = "Save"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_print from menu within menu_form_web
+end type
+
+on m_print.create
+call super::create
+this.text = "Print"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+event clicked;w_forms_web.trigger event ue_print(FALSE)
+end event
+
+type m_exit from menu within menu_form_web
+end type
+
+event clicked;close(w_forms_web)
+
+end event
+
+on m_exit.create
+call super::create
+this.text = "Exit"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+

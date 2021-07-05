@@ -1,0 +1,23 @@
+HA$PBExportHeader$get_dwsyntax.srf
+global type get_dwsyntax from function_object
+end type
+
+forward prototypes
+global function string get_dwsyntax (string ls_import)
+end prototypes
+
+global function string get_dwsyntax (string ls_import);string dwsyntax, ls_rec
+integer li_file, li_len
+
+li_file = FileOpen(ls_import)
+li_len = FileRead(li_file, ls_rec)
+DO While li_len > 0 
+	IF pos(ls_rec,"$PBExportHeader") = 0 THEN
+		dwsyntax += ls_rec //+ "~r~n"
+	END IF
+	li_len = FileRead(li_file, ls_rec)
+Loop
+FileClose(li_file)
+RETURN dwsyntax
+end function
+

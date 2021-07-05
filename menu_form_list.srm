@@ -1,0 +1,366 @@
+HA$PBExportHeader$menu_form_list.srm
+forward
+global type menu_form_list from menu_list
+end type
+end forward
+
+global type menu_form_list from menu_list
+end type
+global menu_form_list menu_form_list
+
+on menu_form_list.create
+menu_form_list=this
+call super::create
+end on
+
+on menu_form_list.destroy
+call super::destroy
+end on
+
+type m_listview from menu_list`m_listview within menu_form_list
+end type
+
+on m_listview.create
+call super::create
+end on
+
+on m_listview.destroy
+call super::destroy
+end on
+
+type m_zoom from menu_list`m_zoom within m_listview
+end type
+
+on m_zoom.create
+call super::create
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_actualsize from menu_list`m_actualsize within m_zoom
+end type
+
+on m_actualsize.create
+call super::create
+end on
+
+on m_actualsize.destroy
+call super::destroy
+end on
+
+type m_125% from menu_list`m_125% within m_zoom
+end type
+
+on m_125%.create
+call super::create
+end on
+
+on m_125%.destroy
+call super::destroy
+end on
+
+type m_150% from menu_list`m_150% within m_zoom
+end type
+
+on m_150%.create
+call super::create
+end on
+
+on m_150%.destroy
+call super::destroy
+end on
+
+type m_advanced_zoom from menu_list`m_advanced_zoom within m_zoom
+end type
+
+on m_advanced_zoom.create
+call super::create
+end on
+
+on m_advanced_zoom.destroy
+call super::destroy
+end on
+
+type m_copy from menu_list`m_copy within m_listview
+end type
+
+on m_copy.create
+call super::create
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+type m_paste from menu_list`m_paste within m_listview
+end type
+
+on m_paste.create
+call super::create
+end on
+
+on m_paste.destroy
+call super::destroy
+end on
+
+type m_undo from menu_list`m_undo within m_listview
+end type
+
+on m_undo.create
+call super::create
+end on
+
+on m_undo.destroy
+call super::destroy
+end on
+
+type m_sort from menu_list`m_sort within m_listview
+end type
+
+on m_sort.create
+call super::create
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_query from menu_list`m_query within m_listview
+end type
+
+on m_query.create
+call super::create
+end on
+
+on m_query.destroy
+call super::destroy
+end on
+
+type m_add from menu_list`m_add within m_listview
+end type
+
+on m_add.create
+call super::create
+end on
+
+on m_add.destroy
+call super::destroy
+end on
+
+type m_delete from menu_list`m_delete within m_listview
+end type
+
+on m_delete.create
+call super::create
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_update from menu_list`m_update within m_listview
+end type
+
+on m_update.create
+call super::create
+this.text = "Reload Record(s)"
+end on
+
+on m_update.destroy
+call super::destroy
+end on
+
+event m_update::clicked;dw_parent.post event ue_advanced(4)
+end event
+
+type m_list from menu_list`m_list within m_listview
+end type
+
+on m_list.create
+call super::create
+end on
+
+on m_list.destroy
+call super::destroy
+end on
+
+type m_printreport from menu_list`m_printreport within m_listview
+end type
+
+on m_printreport.create
+call super::create
+end on
+
+on m_printreport.destroy
+call super::destroy
+end on
+
+type m_printdef from menu_list`m_printdef within m_listview
+end type
+
+on m_printdef.create
+call super::create
+end on
+
+on m_printdef.destroy
+call super::destroy
+end on
+
+type m_showsql from menu_list`m_showsql within m_listview
+end type
+
+on m_showsql.create
+call super::create
+end on
+
+on m_showsql.destroy
+call super::destroy
+end on
+
+type m_retrieverecords from menu_list`m_retrieverecords within m_listview
+end type
+
+on m_retrieverecords.create
+call super::create
+end on
+
+on m_retrieverecords.destroy
+call super::destroy
+end on
+
+type m_copyrecordsdown from menu_list`m_copyrecordsdown within m_listview
+end type
+
+on m_copyrecordsdown.create
+call super::create
+end on
+
+on m_copyrecordsdown.destroy
+call super::destroy
+end on
+
+type m_copyrecordsacross from menu_list`m_copyrecordsacross within m_listview
+end type
+
+on m_copyrecordsacross.create
+call super::create
+end on
+
+on m_copyrecordsacross.destroy
+call super::destroy
+end on
+
+type m_email from menu_list`m_email within m_listview
+end type
+
+on m_email.create
+call super::create
+end on
+
+on m_email.destroy
+call super::destroy
+end on
+
+type m_powersoft from menu_list`m_powersoft within m_email
+end type
+
+on m_powersoft.create
+call super::create
+end on
+
+on m_powersoft.destroy
+call super::destroy
+end on
+
+type m_excel from menu_list`m_excel within m_email
+end type
+
+on m_excel.create
+call super::create
+end on
+
+on m_excel.destroy
+call super::destroy
+end on
+
+type m_columnvisibleonoff from menu_list`m_columnvisibleonoff within m_listview
+end type
+
+on m_columnvisibleonoff.create
+call super::create
+end on
+
+on m_columnvisibleonoff.destroy
+call super::destroy
+end on
+
+type m_importexport from menu_list`m_importexport within m_listview
+end type
+
+on m_importexport.create
+call super::create
+end on
+
+on m_importexport.destroy
+call super::destroy
+end on
+
+type m_import from menu_list`m_import within m_importexport
+end type
+
+on m_import.create
+call super::create
+end on
+
+on m_import.destroy
+call super::destroy
+end on
+
+type m_export from menu_list`m_export within m_importexport
+end type
+
+on m_export.create
+call super::create
+end on
+
+on m_export.destroy
+call super::destroy
+end on
+
+type m_advanced from menu_list`m_advanced within m_listview
+end type
+
+on m_advanced.create
+call super::create
+end on
+
+on m_advanced.destroy
+call super::destroy
+end on
+
+type m_advanced2 from menu_list`m_advanced2 within m_listview
+end type
+
+on m_advanced2.create
+call super::create
+this.visible = true
+this.text = "Properties"
+end on
+
+on m_advanced2.destroy
+call super::destroy
+end on
+
+type m_advanced3 from menu_list`m_advanced3 within m_listview
+end type
+
+on m_advanced3.create
+call super::create
+end on
+
+on m_advanced3.destroy
+call super::destroy
+end on
+

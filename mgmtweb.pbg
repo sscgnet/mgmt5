@@ -1,0 +1,34 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "mgmtweb.pbl" "";
+@end;
+@begin Objects
+ "dw_web_caseattach.srd" "mgmtweb.pbl";
+ "dw_web_attachlist.srd" "mgmtweb.pbl";
+ "dw_web_attachlist_date.srd" "mgmtweb.pbl";
+ "dw_web_casebill.srd" "mgmtweb.pbl";
+ "dw_web_casemain.srd" "mgmtweb.pbl";
+ "dw_web_defcompany.srd" "mgmtweb.pbl";
+ "dw_web_defbill.srd" "mgmtweb.pbl";
+ "pw_status_request_log.srd" "mgmtweb.pbl";
+ "dw_web_status_new.srd" "mgmtweb.pbl";
+ "dw_web_cinspect.srd" "mgmtweb.pbl";
+ "dw_web_deftransfer.srd" "mgmtweb.pbl";
+ "dw_web_caudit.srd" "mgmtweb.pbl";
+ "dw_web_emaillist.srd" "mgmtweb.pbl";
+ "dw_web_caselist.srd" "mgmtweb.pbl";
+ "dw_web_usersdays.srd" "mgmtweb.pbl";
+ "pw_attachment_report.srd" "mgmtweb.pbl";
+ "w_web_attachlist.srw" "mgmtweb.pbl";
+ "dw_web_defstat.srd" "mgmtweb.pbl";
+ "dw_web_codes.srd" "mgmtweb.pbl";
+ "ue_webtransfer.sru" "mgmtweb.pbl";
+ "dw_web_status.srd" "mgmtweb.pbl";
+ "w_web_transfer.srw" "mgmtweb.pbl";
+ "dw_web_notes.srd" "mgmtweb.pbl";
+ "dw_web_ctypes.srd" "mgmtweb.pbl";
+ "dw_web_users.srd" "mgmtweb.pbl";
+ "locate_rep.srf" "mgmtweb.pbl";
+ "menu_web.srm" "mgmtweb.pbl";
+ "reg_forms.srf" "mgmtweb.pbl";
+@end;
